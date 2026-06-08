@@ -1,13 +1,14 @@
+-- If you use this premake script, you'll need to define the BIN_DIR and 
+-- OBJ_DIR variables according to your personal preferences.
+
 project "GLFW"
 	kind "StaticLib"
 	language "C"
 
-	targetdir ("bin/" .. outputdir .. "%{prj.name}")
-	objdir    ("bin-int/" .. outputdir .. "/%{prj.name}")
+	targetdir (BIN_DIR)
+	objdir    (OBJ_DIR)
 
-	files
-	{
-		-- Temporary Test
+	files {
 		"src/**.h",
 		"src/**.c",
 	
@@ -26,8 +27,7 @@ project "GLFW"
 		systemversion "latest"
 		staticruntime "On"
 
-		files
-		{
+		files {
 			"src/win32_init.c",
 			"src/win32_joystick.c",
 			"src/win32_monitor.c",
@@ -39,11 +39,7 @@ project "GLFW"
 			"src/osmesa_context.c"
 		}
 		
-		defines
-		{
+		defines {
 			"_GLFW_WIN32",
 			"_CRT_SECURE_NO_WARNINGS"
 		}
-
-filter { "system:windows", "configurations:Release" }
-	--buildoptions "/MT"
